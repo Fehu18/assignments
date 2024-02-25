@@ -31,11 +31,12 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION }}
           ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
 
-      - name: Terraform Init
-        run: terraform init -var-file=./prd/main.tf
+    - name: Terraform Init
+      run: terraform init ./modules
 
-      - name: Terraform Plan
-        run: terraform plan -var-file=./prd/main.tf
+    - name: Terraform Plan
+      run: terraform plan -var-file=./modules/vars.tfvars ./modules
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file=./prd/main.tf
+    - name: Terraform Apply
+      run: terraform apply -auto-approve -var-file=./modules/vars.tfvars ./modules
+
