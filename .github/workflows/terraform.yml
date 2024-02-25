@@ -17,14 +17,12 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Terraform Init
-        run: terraform init -chdir=./prd
-
-      - name: Terraform Plan
-        run: terraform plan ./prd
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve ./prd
+      - run: rm -rf .terraform
+      - init:
+          extra_args: [-backend-config=./prd/main.tf]
+      - plan:
+          extra_args: [-var-file=./prd/main.tf]
+    apply:
+     steps:
+      - apply:
+          extra_args: [-var-file=./prd/main.tf]
