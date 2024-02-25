@@ -32,7 +32,7 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -var-file=./prd/main.tf
 
       - name: Terraform Plan
         run: terraform plan -var-file=./prd/main.tf
