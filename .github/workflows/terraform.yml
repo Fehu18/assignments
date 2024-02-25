@@ -17,12 +17,31 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
 
     steps:
-      - run: rm -rf .terraform
-      - init:
-          extra_args: [-backend-config=./prd/main.tf]
-      - plan:
-          extra_args: [-var-file=./prd/main.tf]
-    apply:
-     steps:
-      - apply:
-          extra_args: [-var-file=./prd/main.tf]
+      - name: Clean up previous Terraform files
+        run: rm -rf .terraform
+
+      - name: Initialize Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.0
+        env:
+          TF_CLI_ARGS: "-backend-config=./prd/main.tf"
+        # Provide Azure credentials
+        # Use the following environment variables for authentication
+        # ARM_CLIENT_ID, ARM_CLIENT_SECRET, ARM_SUBSCRIPTION_ID, ARM_TENANT_ID
+
+      - name: Terraform Plan
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.0
+        env:
+          TF_CLI_ARGS: "-var-file=./prd/main.tf"
+        run: terraform plan
+
+      - name: Terraform Apply
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.0
+        env:
+          TF_CLI_ARGS: "-var-file=./prd/main.tf"
+        run: terraform apply -auto-approve
