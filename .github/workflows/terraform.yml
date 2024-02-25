@@ -34,18 +34,6 @@ jobs:
       with:
         terraform_version: 1.1.0
 
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: '{"clientId": "a263ea48-8ebd-45db-9f03-bcf4ebcf5f38", "clientSecret": "ZEs8Q~FX4cR5Rc-s2i7EuEay6cGE5C2gXIcambsE", "tenantId": "6a7cad51-05b4-4ea3-8435-b2157749ac6b"}'
-       allow-no-subscriptions: false
-       audience: api://AzureADTokenExchange
-       auth-type: SERVICE_PRINCIPAL
-       enable-AzPSSession: false
-       environment: azurecloud
-       env:
-           TERRAFORM_CLI_PATH: /home/runner/work/_temp/ccf86e2b-12b4-4c83-9365-7b2f788279c0
-
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
