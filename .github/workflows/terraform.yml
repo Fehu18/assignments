@@ -26,30 +26,16 @@ jobs:
           terraform_version: 1.1.0
         env:
           TF_CLI_ARGS: "-backend-config=./prd/main.tf"
-        # Provide Azure credentials
-        # Use the following environment variables for authentication
-        # ARM_CLIENT_ID, ARM_CLIENT_SECRET, ARM_SUBSCRIPTION_ID, ARM_TENANT_ID
+          ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
 
-     - name: Terraform Init
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.1.0
-        env:
-          TF_CLI_ARGS: "-var-file=./prd/main.tf"
+      - name: Terraform Init
         run: terraform init
 
       - name: Terraform Plan
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.1.0
-        env:
-          TF_CLI_ARGS: "-var-file=./prd/main.tf"
-        run: terraform plan
+        run: terraform plan -var-file=./prd/main.tf
 
       - name: Terraform Apply
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.1.0
-        env:
-          TF_CLI_ARGS: "-var-file=./prd/main.tf"
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var-file=./prd/main.tf
