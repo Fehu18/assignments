@@ -32,14 +32,14 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        environment: azurecloud
-        allow-no-subscriptions: false
-        audience: api://AzureADTokenExchange
-        auth-type: SERVICE_PRINCIPAL
+    creds: ${{ secrets.AZURE_CLIENT_ID }}, ${{ secrets.AZURE_CLIENT_SECRET }}, ${{ secrets.AZURE_TENANT_ID }}
+    allow-no-subscriptions: false
+    audience: api://AzureADTokenExchange
+    auth-type: SERVICE_PRINCIPAL
+    enable-AzPSSession: false
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
+    - name: Terraform
       uses: hashicorp/setup-terraform@v1
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
