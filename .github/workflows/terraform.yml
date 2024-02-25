@@ -20,23 +20,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: "Terraform Init"
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.12.13
-          tf_actions_subcommand: "init"
-          tf_actions_dir: "./terraform"
+      - name: Terraform Init
+        run: terraform init ./prd
 
-      - name: "Terraform Plan"
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.12.13
-          tf_actions_subcommand: "plan"
-          tf_actions_dir: "./terraform"
+      - name: Terraform Plan
+        run: terraform plan ./prd
 
-      - name: "Terraform Apply"
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.12.13
-          tf_actions_subcommand: "apply"
-          tf_actions_dir: "./terraform"
+      - name: Terraform Apply
+        run: terraform apply -auto-approve ./prd
