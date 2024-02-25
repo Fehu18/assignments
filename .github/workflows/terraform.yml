@@ -13,25 +13,28 @@ jobs:
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      TF_VAR_client_id: ${{ secrets.AZURE_AD_CLIENT_ID }}
+      TF_VAR_client_secret: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      TF_VAR_tenant_id: ${{ secrets.AZURE_AD_TENANT_ID }}
 
     steps:
-      - name: Clean up previous Terraform files
-        run: rm -rf .terraform
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Initialize Terraform
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.1.0
-        env:
-          TF_CLI_ARGS: "-backend-config=./prd/main.tf"
 
       - name: Terraform Init
-        run: terraform init ./modules
+        run: terraform init -backend-config=prd/main.tf
 
       - name: Terraform Plan
-        run: terraform plan -var-file=./modules/vars.tfvars ./modules
+        run: terraform plan -var-file=prd/terraform.tfvars prd
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file=./modules/vars.tfvars ./modules
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve -var-file=prd/terraform.tfvars prd
