@@ -41,7 +41,7 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_windows_virtual_machine" "vm" {
-  name                = "vm-engine-eastus2-001"
+  name                = "vm-engine"
   location            = "eastus2"
   resource_group_name = "rg_eastus"
   size                = "Standard_F2"
