@@ -1,0 +1,5 @@
+subscription_id      = "dd841e0c-a76f-4d5d-ae2f-b0645b248ae5"
+resource_group_name  = "storagerg"
+storage_account_name = "backendstore1206"
+container_name       = "storecont"
+key                  = "terraform.tfstate"
