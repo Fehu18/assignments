@@ -23,7 +23,7 @@ resource "azurerm_private_endpoint" "kv" {
     name                           = "test"
     is_manual_connection           = false
     private_connection_resource_id = azurerm_windows_virtual_machine.vm.id
-    subresource_names              = ["Microsoft.KeyVault"]
+    subresource_names              = ["sqlServer"]
   }
 
 }
