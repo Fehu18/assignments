@@ -26,4 +26,4 @@ jobs:
           terraform_version: ${{ env.TF_VERSION }}
 
       - name: Terraform init
-        run: terraform init ./prd/version.tf
+        run: terraform init -chdir=./prd
