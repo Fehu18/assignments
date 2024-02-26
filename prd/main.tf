@@ -51,4 +51,5 @@ module "keyvault" {
 }
 module "vm" {
   source = "../modules/vm"
+  depends_on = [ module.resource_group ]
 }
