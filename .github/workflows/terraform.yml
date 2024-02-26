@@ -35,5 +35,5 @@ jobs:
         working-directory : prd
 
       - name: Terraform Apply
-        run: terraform apply
+        run: terraform apply -auto-approve
         working-directory : prd
