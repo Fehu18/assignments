@@ -13,7 +13,7 @@ resource "azurerm_subnet" "subnet" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
-resource "azurerm_private_endpoint" "kv" {
+resource "azurerm_private_endpoint" "example" {
   name                = "testprivateenpoint"
   location            = "eastus2"
   resource_group_name = "rg_eastus"
