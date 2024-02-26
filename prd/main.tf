@@ -24,10 +24,7 @@ module "aks" {
     load_balancer_sku = "standard"
   }
 }
-module "vnet" {
-  source = "../modules/vnet"
-  resource_group = module.resource_group.resource_group
-}
+
 module "keyvault" {
   source         = "../modules/kv"
   key_vault_name = "kv-engine-eastus2-001"
@@ -52,6 +49,6 @@ module "keyvault" {
   depends_on = [module.resource_group]
 
 }
-
-
-l
+module "vm" {
+  source = "../modules/vm"
+}
