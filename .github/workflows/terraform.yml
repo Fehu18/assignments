@@ -24,12 +24,4 @@ jobs:
           terraform_version: 1.1.0
 
       - name: Terraform Init
-        run: terraform init -backend-config=prd/version.tf # Adjust this to point to your backend configuration file correctly
-
-      - name: Terraform Plan
-        run: terraform plan -var-file=prd/main.tf -out=tfplan # Adjust the path to your var-file as necessary
-
-      - name: Terraform Apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: terraform apply "tfplan"
-
+        run: terraform init -backend-config=prd/version.tf
