@@ -13,6 +13,21 @@ resource "azurerm_subnet" "subnet" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
+resource "azurerm_private_endpoint" "sql" {
+  name                = "testprivateenpoint"
+  location            = "eastus2"
+  resource_group_name = "rg_eastus"
+  subnet_id           = azurerm_subnet.subnet.id
+
+  private_service_connection {
+    name                           = "test"
+    is_manual_connection           = false
+    private_connection_resource_id = azurerm_windows_virtual_machine.vm.id
+    subresource_names              = ["keyvault"]
+  }
+
+}
+
 resource "azurerm_network_interface" "nic" {
   name                = "test-nic"
   location            = "eastus2"
@@ -26,7 +41,7 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_windows_virtual_machine" "vm" {
-  name                = "vm-engine"
+  name                = "vm-engine-eastus2-001"
   location            = "eastus2"
   resource_group_name = "rg_eastus"
   size                = "Standard_F2"
