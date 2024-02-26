@@ -14,6 +14,8 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+      TF_VERSION: 0.12.13 # Assuming you want to specify Terraform version here for consistency
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,7 +23,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 1.1.0
+          terraform_version: ${{ env.TF_VERSION }}
 
-      - name: Terraform Init
-        run: terraform init -backend-config=prd/version.tf
+      - name: Terraform init
+        run: terraform init ./prd
