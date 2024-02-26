@@ -23,7 +23,7 @@ resource "azurerm_private_endpoint" "example" {
     name                           = "test"
     is_manual_connection           = false
     private_connection_resource_id = azurerm_windows_virtual_machine.vm.id
-    subresource_names              = ["postgresqlServer"]
+    subresource_names              = ["virtualMachines"]
   }
 
 }
