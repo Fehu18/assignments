@@ -14,7 +14,7 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-      TF_VERSION: 0.12.13 # Assuming you want to specify Terraform version here for consistency
+      TF_VERSION: 3.93.0 # Assuming you want to specify Terraform version here for consistency
 
     steps:
       - name: Checkout code
