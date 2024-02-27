@@ -1,9 +1,10 @@
-/*
+
 module "resource_group" {
   source                  = "../modules/resource_group"
   resource_group_name     = "rg_eastus"
   resource_group_location = "eastus2"
 }
+/*
 module "aks" {
   source         = "../modules/aks"
   resource_group = module.resource_group.resource_group
