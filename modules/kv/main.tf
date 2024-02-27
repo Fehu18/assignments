@@ -1,5 +1,6 @@
 
 data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault" "main" {
   name                        = var.key_vault_name
@@ -18,6 +19,8 @@ resource "azurerm_key_vault" "main" {
     ip_rules       = var.ip_rules
   }
    access policy {
+   object_id = data.azurerm_client_config.current.object_id
+
    secret_permission = [
    "get",
    "set",
