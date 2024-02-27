@@ -30,6 +30,11 @@ jobs:
         run: terraform init
         working-directory : prd
 
+      - name: terraform fmt
+        run: terraform fmt --recursive
+        working-directory : prd
+      
+
       - name: Terraform Plan
         run: terraform plan
         working-directory : prd
