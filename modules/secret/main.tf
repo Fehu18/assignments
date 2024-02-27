@@ -1,3 +1,4 @@
+
 resource "azurerm_key_vault_secret" "secret" {
   name         = "secret-sauce"
   value        = "szechuan"
