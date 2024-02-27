@@ -54,6 +54,6 @@ module "keyvault" {
  depends_on = [ module.resource_group ]
 } */
 
-module "secret"{
+module "secret" {
 source = "../modules/secret"
 }
