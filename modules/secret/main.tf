@@ -1,4 +1,4 @@
-resource "random_passwword" "vmpassword"{
+resource "random_password" "vmpassword"{
   length = 20
   special = true
   }
