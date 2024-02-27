@@ -3,10 +3,7 @@ variable "key_vault_id" {
 }
 
 
-variable “secretname” {
-  type = special 
-  description = ““
-}
+
 
 
 
