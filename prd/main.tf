@@ -27,11 +27,11 @@ module "aks" {
 } */
 
 module "keyvault" {
-  source         = "../modules/kv"
-  key_vault_name = "kv-engine-eastus2-001"
-  location       = "eastus2"
-  bypass         = "AzureServices"
-  ip_rules = []
+  source                               = "../modules/kv"
+  key_vault_name                       = "kv-engine-eastus2-001"
+  location                             = "eastus2"
+  bypass                               = "AzureServices"
+  ip_rules                             = []
   is_network_acls_default_action_allow = false
   tags                                 = {}
 
@@ -56,5 +56,5 @@ module "keyvault" {
 } */
 
 module "secret" {
-source = "../modules/secret"
+  source = "../modules/secret"
 }

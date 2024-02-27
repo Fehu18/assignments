@@ -22,4 +22,4 @@ provider "azurerm" {
   features {}
   subscription_id = "dd841e0c-a76f-4d5d-ae2f-b0645b248ae5"
   tenant_id       = "6a7cad51-05b4-4ea3-8435-b2157749ac6b"
-} 
+}

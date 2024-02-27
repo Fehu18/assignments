@@ -1,11 +1,11 @@
 
- resource "azurerm_public_ip" "ip_aks" {
-   name                = "ip-${var.cluster_name}"
-   location            = var.resource_group.location
-   resource_group_name = var.resource_group.name
-   allocation_method   = "Static"
-   sku                 = "Standard"
- }
+resource "azurerm_public_ip" "ip_aks" {
+  name                = "ip-${var.cluster_name}"
+  location            = var.resource_group.location
+  resource_group_name = var.resource_group.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
 
 resource "azurerm_kubernetes_cluster" "k8s" {
   location            = var.resource_group.location

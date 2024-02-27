@@ -9,7 +9,7 @@ resource "azurerm_subnet" "subnet_kv" {
   resource_group_name  = var.resource_group.name
   virtual_network_name = var.vnet_name
   address_prefixes     = var.subnet_kv_address_space
-    depends_on = [
+  depends_on = [
     azurerm_virtual_network.vnet
   ]
 
@@ -19,7 +19,7 @@ resource "azurerm_subnet" "subnet_vm" {
   resource_group_name  = var.resource_group.name
   virtual_network_name = var.vnet_name
   address_prefixes     = var.subnet_vm_address_space
-    depends_on = [
+  depends_on = [
     azurerm_subnet.subnet_kv
   ]
 }

@@ -8,7 +8,7 @@ resource "azurerm_virtual_network" "testvnet" {
 
 resource "azurerm_subnet" "subnet" {
   name                 = "snet-egine-eastus2-001"
-  resource_group_name = "rg_eastus"
+  resource_group_name  = "rg_eastus"
   virtual_network_name = azurerm_virtual_network.testvnet.name
   address_prefixes     = ["10.0.2.0/24"]
 }
