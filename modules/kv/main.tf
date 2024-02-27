@@ -23,6 +23,7 @@ resource "azurerm_key_vault" "main" {
    "set",
    "create",
 ]
+}
 
   lifecycle {
     ignore_changes = [
