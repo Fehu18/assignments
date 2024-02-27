@@ -1,4 +1,4 @@
-
+/*
 module "resource_group" {
   source                  = "../modules/resource_group"
   resource_group_name     = "rg_eastus"
@@ -49,7 +49,11 @@ module "keyvault" {
   depends_on = [module.resource_group]
 
 }
-module "vm" {
-  source = "../modules/vm"
-  depends_on = [ module.resource_group ]
+ module "vm" {
+ source = "../modules/vm"
+ depends_on = [ module.resource_group ]
+} */
+
+module "secret"{
+source = "../modules/secret"
 }
