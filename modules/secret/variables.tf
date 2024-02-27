@@ -1,9 +1,11 @@
 variable "key_vault_id" {
   default = ""
 }
-Variable “secret name” {
-  Type = special 
-  Description = “ stores the password “
+
+
+variable “secret_name” {
+  type = special 
+  description = “stores the password“
 }
 
 
