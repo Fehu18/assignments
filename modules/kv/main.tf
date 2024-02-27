@@ -18,14 +18,6 @@ resource "azurerm_key_vault" "main" {
     default_action = var.is_network_acls_default_action_allow ? "Allow" : "Deny"
     ip_rules       = var.ip_rules
   }
-   access policy {
-   
-
-   secret_permission = [
-   "get",
-   "set",
-   "create",
-]
 }
 
   lifecycle {
