@@ -11,6 +11,8 @@ resource "azurerm_key_vault" "main" {
   enabled_for_disk_encryption = var.vault.enabled_for_disk_encryption
   enable_rbac_authorization   = var.vault.enable_rbac_authorization
   enabled_for_deployment      = var.vault.enabled_for_deployment
+  soft_delete_enabled         = true
+  purge_protection_enabled    = false
   tags                        = var.tags
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   network_acls {
@@ -19,9 +21,45 @@ resource "azurerm_key_vault" "main" {
     ip_rules       = var.ip_rules
   }
 }
+resource "azurerm_key_vault_access_policy" "sample1" {
+  key_vault_id = azurerm_key_vault.sample1.id
 
-#  lifecycle {
-#   ignore_changes = [
-#    tags["deployment-version"],
-#   ]
-# }
+  tenant_id = var.tenant_id
+  object_id = var.service_principal_id
+
+  key_permissions = [
+    "get",
+    "list",
+    "update",
+    "create",
+    "import",
+    "delete",
+    "recover",
+    "backup",
+    "restore",
+  ]
+
+  secret_permissions = [
+    "get",
+    "list",
+    "set",
+    "delete",
+    "recover",
+    "backup",
+    "restore",
+  ]
+
+  storage_permissions = [
+    "get",
+    "list",
+    "delete",
+    "set",
+    "update",
+    "regeneratekey",
+    "setsas",
+    "listsas",
+    "getsas",
+    "deletesas",
+  ]
+}
+
