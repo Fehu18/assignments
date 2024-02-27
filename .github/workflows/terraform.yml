@@ -4,7 +4,14 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check IP
+        run: |
+          echo "Runner's IP Address:"
+          curl https://ifconfig.me
 jobs:
   terraform:
     name: 'Terraform'
