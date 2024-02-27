@@ -20,9 +20,8 @@ resource "azurerm_key_vault" "main" {
   }
 }
 
-  lifecycle {
-    ignore_changes = [
-      tags["deployment-version"],
-    ]
-  }
-
+#  lifecycle {
+#   ignore_changes = [
+#    tags["deployment-version"],
+#   ]
+# }
