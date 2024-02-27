@@ -1,8 +1,3 @@
-variable "key_vault_id" {
-  description = "The ID of the Key Vault where the secret will be stored"
-  type        = string
-}
-
 resource "random_password" "vmpassword" {
   length  = 20
   special = true
