@@ -23,7 +23,7 @@ module "aks" {
     network_plugin = "kubenet"
     load_balancer_sku = "standard"
   }
-}
+} */
 
 module "keyvault" {
   source         = "../modules/kv"
@@ -49,7 +49,7 @@ module "keyvault" {
   depends_on = [module.resource_group]
 
 }
- module "vm" {
+/* module "vm" {
  source = "../modules/vm"
  depends_on = [ module.resource_group ]
 } */
