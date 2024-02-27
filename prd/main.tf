@@ -57,5 +57,5 @@ module "keyvault" {
 
 module "secret" {
   source = "../modules/secret"
-  keyvault_id = module.keyvault.id
+  key_vault_id = module.keyvault.id
 }
