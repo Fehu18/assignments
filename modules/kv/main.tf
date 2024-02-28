@@ -11,7 +11,6 @@ resource "azurerm_key_vault" "main" {
   enabled_for_disk_encryption = var.vault.enabled_for_disk_encryption
   enable_rbac_authorization   = var.vault.enable_rbac_authorization
   enabled_for_deployment      = var.vault.enabled_for_deployment
-  soft_delete_enabled         = true
   tags                        = var.tags
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   network_acls {
