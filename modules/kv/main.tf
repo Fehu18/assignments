@@ -20,7 +20,7 @@ resource "azurerm_key_vault" "main" {
   }
 }
 resource "azurerm_key_vault_access_policy" "sample1" {
-  key_vault_id = azurerm_key_vault.sample1.id
+  
 
   tenant_id = var.tenant_id
   object_id = var.service_principal_id
