@@ -19,45 +19,5 @@ resource "azurerm_key_vault" "main" {
     ip_rules       = var.ip_rules
   }
 }
-resource "azurerm_key_vault_access_policy" "sample1" {
-  
 
-  tenant_id = var.tenant_id
-  object_id = var.service_principal_id
-
-  key_permissions = [
-    "get",
-    "list",
-    "update",
-    "create",
-    "import",
-    "delete",
-    "recover",
-    "backup",
-    "restore",
-  ]
-
-  secret_permissions = [
-    "get",
-    "list",
-    "set",
-    "delete",
-    "recover",
-    "backup",
-    "restore",
-  ]
-
-  storage_permissions = [
-    "get",
-    "list",
-    "delete",
-    "set",
-    "update",
-    "regeneratekey",
-    "setsas",
-    "listsas",
-    "getsas",
-    "deletesas",
-  ]
-}
 
