@@ -43,3 +43,6 @@ variable "bypass" {
   default     = "AzureServices"
   description = "bypass values"
 }
+ variable "key_vault_id" {
+   default = ""
+}
