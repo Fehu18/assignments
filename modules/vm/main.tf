@@ -37,10 +37,12 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
+   public_ip_address_id = azurerm_public_ip.app_public_ip.id
   }
 
 depends_on = [
-    azurerm_virtual_network.testvnet
+    azurerm_virtual_network.testvnet,
+    azurerm_public_ip.app_public_ip
   ]
 }
 
@@ -72,3 +74,11 @@ depends_on = [
     azurerm_key_vault_secret.vmpassword
   ]
 }
+resource "azurerm_public_ip" "app_public_ip" {
+  name                = "app-public-ip"
+  resource_group_name = "rg_eastus"
+  location            = "eastus2"
+  allocation_method   = "Static"
+  depends_on = [
+    azurerm_resource_group.rg_eastus
+  ]
