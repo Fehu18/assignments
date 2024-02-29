@@ -7,15 +7,15 @@ resource "azurerm_virtual_network" "testvnet" {
 }
 
 resource "azurerm_subnet" "subnet" {
-  name                 = "snet-egine-eastus2-001"
+  name                 = "snet-vm-egine-eastus2-001"
   resource_group_name  = "rg_eastus"
   virtual_network_name = azurerm_virtual_network.testvnet.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 
-#resource "azurerm_private_endpoint" "example" {
-#  name                = "testprivateenpoint"
-#  location            = "eastus2"
+# resource "azurerm_private_endpoint" "example" {
+#   name                = "testprivateenpoint"
+#  location            = "eastus2" 
 #  resource_group_name = "rg_eastus"
 #  subnet_id           = azurerm_subnet.subnet.id
 
@@ -66,4 +66,9 @@ resource "azurerm_windows_virtual_machine" "vm" {
     sku       = "2016-Datacenter"
     version   = "latest"
   }
+
+depends_on = [
+    azurerm_network_interface.nic,
+    azurerm_key_vault_secret.vmpassword
+  ]
 }
