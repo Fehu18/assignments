@@ -18,6 +18,18 @@ resource "azurerm_key_vault" "main" {
     default_action = var.is_network_acls_default_action_allow ? "Allow" : "Deny"
     ip_rules       = var.ip_rules
   }
+
+resource "azurerm_key_vault_access_policy" "example" {
+  key_vault_id =  var.key_vault_id
+
+  tenant_id = data.azurerm_client_config.current.tenant_id
+  object_id = data.azurerm_client_config.current.object_id
+
+  secret_permissions = [
+    "delete",
+    "get",
+    "set",
+  ]
 }
 
 
