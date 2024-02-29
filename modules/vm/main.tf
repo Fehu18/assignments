@@ -38,6 +38,10 @@ resource "azurerm_network_interface" "nic" {
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
   }
+
+depends_on = [
+    azurerm_virtual_network.testvnet
+  ]
 }
 
 resource "azurerm_windows_virtual_machine" "vm" {
