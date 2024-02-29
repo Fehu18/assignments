@@ -4,7 +4,7 @@ module "resource_group" {
   resource_group_name     = "rg_eastus"
   resource_group_location = "eastus2"
 }
-/*
+
 module "aks" {
   source         = "../modules/aks"
   resource_group = module.resource_group.resource_group
@@ -22,11 +22,15 @@ module "aks" {
   }
   network_profile = {
     network_plugin = "kubenet"
-    load_balancer_sku = "standard"
+    load_balancer_sku ="standard"
   }
-} */
+} 
+module "vnet"{
+  source = "../modules/vnet"
+  resource_group = module.resource_group.resource_group
+}
 
-module "keyvault" {
+/*module "keyvault" {
   source                               = "../modules/kv"
   key_vault_name                       = "kv-engine-eastus2-001"
   location                             = "eastus2"
@@ -47,16 +51,17 @@ module "keyvault" {
     tenant_id                   = "6a7cad51-05b4-4ea3-8435-b2157749ac6b"
 
   }
-  depends_on = [module.resource_group]
+  depends_on = [module.resource_group] 
 
 }
+*/
 /* module "vm" {
  source = "../modules/vm"
  depends_on = [ module.resource_group ]
 } */
 
-module "secret" {
+/*module "secret" {
   source       = "../modules/secret"
   key_vault_id = module.keyvault.key_vault_id
-}
+}*/
   
